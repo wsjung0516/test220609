@@ -1,0 +1,28 @@
+{
+  "root": "apps/testnx-e2e",
+  "sourceRoot": "apps/testnx-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/testnx-e2e/cypress.json",
+        "devServerTarget": "testnx:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "testnx:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/testnx-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["testnx"]
+}
