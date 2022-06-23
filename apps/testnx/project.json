@@ -15,7 +15,8 @@
         "tsConfig": "apps/testnx/tsconfig.app.json",
         "assets": ["apps/testnx/src/favicon.ico", "apps/testnx/src/assets"],
         "styles": ["apps/testnx/src/styles.css"],
-        "scripts": []
+        "scripts": [],
+        "webWorkerTsConfig": "apps/testnx/tsconfig.worker.json"
       },
       "configurations": {
         "production": {
@@ -82,7 +83,41 @@
       "outputs": ["coverage/apps/testnx"],
       "options": {
         "jestConfig": "apps/testnx/jest.config.js",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "webWorkerTsConfig": "apps/testnx/tsconfig.worker.json"
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "port": 4400,
+        "config": {
+          "configFolder": "apps/testnx/.storybook"
+        },
+        "projectBuildConfig": "testnx"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "outputPath": "dist/storybook/testnx",
+        "config": {
+          "configFolder": "apps/testnx/.storybook"
+        },
+        "projectBuildConfig": "testnx"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
       }
     }
   },
